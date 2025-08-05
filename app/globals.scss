@@ -1,7 +1,3 @@
-// =============================================================================
-// GLOBALS.SCSS - Global styles with SCSS nesting and BEM methodology
-// =============================================================================
-
 // CSS Reset and Normalization
 *,
 *::before,
@@ -25,14 +21,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--color-background);
-  color: var(--color-text-primary);
+  background-color: #111827;
+  color: #f3f4f6;
   min-height: 100vh;
 }
-
-// =============================================================================
-// CSS CUSTOM PROPERTIES (CSS Variables)
-// =============================================================================
 
 :root {
   // Color Palette
@@ -65,14 +57,14 @@ body {
   --color-gray-800: #1f2937;
   --color-gray-900: #111827;
   
-  // Semantic Colors
-  --color-background: var(--color-white);
-  --color-surface: var(--color-gray-50);
-  --color-border: var(--color-gray-200);
+  // Semantic Colors (Dark Theme Default)
+  --color-background: var(--color-gray-900);
+  --color-surface: var(--color-gray-800);
+  --color-border: var(--color-gray-700);
   --color-border-focus: var(--color-primary);
-  --color-text-primary: var(--color-gray-900);
-  --color-text-secondary: var(--color-gray-600);
-  --color-text-muted: var(--color-gray-500);
+  --color-text-primary: var(--color-gray-100);
+  --color-text-secondary: var(--color-gray-300);
+  --color-text-muted: var(--color-gray-400);
   --color-text-inverse: var(--color-white);
   
   // Spacing Scale
@@ -137,23 +129,6 @@ body {
   --z-toast: 1080;
 }
 
-// Dark mode support
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: var(--color-gray-900);
-    --color-surface: var(--color-gray-800);
-    --color-border: var(--color-gray-700);
-    --color-text-primary: var(--color-gray-100);
-    --color-text-secondary: var(--color-gray-300);
-    --color-text-muted: var(--color-gray-400);
-  }
-}
-
-// =============================================================================
-// UTILITY CLASSES (BEM-style)
-// =============================================================================
-
-// Layout utilities
 .u-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -221,7 +196,7 @@ body {
   }
 }
 
-// Spacing utilities
+
 .u-margin {
   &--none {
     margin: 0;
@@ -294,7 +269,7 @@ body {
   }
 }
 
-// Text utilities
+
 .u-text {
   &--center {
     text-align: center;
@@ -361,7 +336,7 @@ body {
   }
 }
 
-// Visibility utilities
+
 .u-hidden {
   display: none;
 }
@@ -378,11 +353,7 @@ body {
   border: 0;
 }
 
-// =============================================================================
-// GLOBAL COMPONENT STYLES (BEM methodology)
-// =============================================================================
 
-// Page layout
 .page {
   min-height: 100vh;
   display: flex;
@@ -407,7 +378,7 @@ body {
   }
 }
 
-// Card component
+
 .card {
   background-color: var(--color-white);
   border: 1px solid var(--color-border);
@@ -440,7 +411,7 @@ body {
   }
 }
 
-// Alert component
+
 .alert {
   padding: var(--spacing-lg);
   border-radius: var(--border-radius-md);
@@ -494,7 +465,7 @@ body {
   }
 }
 
-// Loading states
+
 .loading {
   &__spinner {
     display: inline-block;
@@ -534,10 +505,6 @@ body {
     }
   }
 }
-
-// =============================================================================
-// ANIMATIONS
-// =============================================================================
 
 @keyframes spin {
   to {
@@ -585,11 +552,7 @@ body {
   }
 }
 
-// =============================================================================
-// RESPONSIVE BREAKPOINTS
-// =============================================================================
 
-// Mobile-first approach
 @mixin mobile {
   @media (max-width: 767px) {
     @content;
