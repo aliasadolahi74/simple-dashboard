@@ -1,0 +1,61 @@
+// Login Page Styles
+.loginPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  padding: 1rem;
+  
+  @media (max-width: 480px) {
+    padding: 0.75rem;
+  }
+}
+
+.loginPageCard {
+  border-radius: 0.75rem;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  padding: 3rem;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #374151;
+  background-color: #1f2937;
+
+  @media (max-width: 480px) {
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+}
+
+.loginPageHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+  
+  @media (max-width: 480px) {
+    margin-bottom: 2rem;
+  }
+}
+
+.loginPageTitle {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #f3f4f6;
+  margin-bottom: 0.75rem;
+  line-height: 1.25;
+  
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
+  }
+}
+
+.loginPageSubtitle {
+  font-size: 1rem;
+  color: #d1d5db;
+  margin: 0;
+  line-height: 1.5;
+  
+  @media (max-width: 480px) {
+    font-size: 0.875rem;
+  }
+}

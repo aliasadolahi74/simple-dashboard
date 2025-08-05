@@ -2,7 +2,7 @@ import { forwardRef, ButtonHTMLAttributes, ReactNode } from 'react';
 import clsx from 'clsx';
 import styles from './styles.module.scss';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+type ButtonProps =  ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'success';
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
   loading?: boolean;

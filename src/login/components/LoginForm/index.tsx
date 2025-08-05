@@ -1,9 +1,10 @@
+"use client";
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
-import styles from '@/src/login/styles/ui.module.scss';
+import styles from './LoginForm.module.scss';
 import Label from '@/src/ui/components/Label';
 import Input from '@/src/ui/components/Input';
 import Button from '@/src/ui/components/Button';
@@ -18,12 +19,12 @@ const loginSchema = z.object({
 
 type LoginFormData = z.infer<typeof loginSchema>;
 
-interface LoginFormProps {
+type LoginFormProps = {
   onSubmit: (data: LoginFormData) => void;
   isLoading?: boolean;
 }
 
-const LoginForm = ({ onSubmit, isLoading = false }: LoginFormProps) => {
+const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, isLoading = false }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const {

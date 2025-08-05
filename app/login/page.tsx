@@ -1,19 +1,28 @@
 "use client"
-import LoginForm from '@/src/login/components/LoginForm';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import styles from '@/src/login/styles/page.module.scss';
+import { useAuth } from '@/src/contexts/AuthContext';
+import styles from './style.module.scss';
+import LoginForm from '@/src/login/components/LoginForm';
 
 const LoginPage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
+  const { login, isAuthenticated } = useAuth();
+
+  // Redirect to dashboard if already authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push('/dashboard');
+    }
+  }, [isAuthenticated, router]);
 
   const handleOnLogin: (data: { email: string; password: string }) => Promise<void> = async () => {
     try {
       setIsLoading(true);
       const response = await fetch('https://randomuser.me/api/?results=1&nat=us');
       const userData = await response.json();
-      localStorage.setItem('userData', JSON.stringify(userData));
+      login(userData);
       router.push('/dashboard');
     } catch (error) {
       console.error('Login error:', error);
