@@ -1,0 +1,403 @@
+// =============================================================================
+// LABEL COMPONENT - SCSS Module with BEM methodology
+// =============================================================================
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-normal);
+  margin-bottom: var(--spacing-xs);
+  cursor: pointer;
+  user-select: none;
+  
+  // Icon within label
+  &__icon {
+    width: 1rem;
+    height: 1rem;
+    margin-right: var(--spacing-xs);
+    flex-shrink: 0;
+    color: var(--color-text-secondary);
+  }
+  
+  // Required indicator
+  &__required {
+    color: var(--color-error);
+    margin-left: var(--spacing-xs);
+    font-weight: var(--font-weight-bold);
+  }
+  
+  // Optional indicator
+  &__optional {
+    color: var(--color-text-muted);
+    margin-left: var(--spacing-xs);
+    font-weight: var(--font-weight-normal);
+    font-size: var(--font-size-xs);
+  }
+  
+  // Help text or description
+  &__help {
+    display: block;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-normal);
+    color: var(--color-text-muted);
+    margin-top: var(--spacing-xs);
+    line-height: var(--line-height-normal);
+  }
+}
+
+// =============================================================================
+// LABEL VARIANTS
+// =============================================================================
+
+// Error state
+.label--error {
+  color: var(--color-error);
+  
+  .label__icon {
+    color: var(--color-error);
+  }
+  
+  .label__help {
+    color: var(--color-error);
+  }
+}
+
+// Success state
+.label--success {
+  color: var(--color-success);
+  
+  .label__icon {
+    color: var(--color-success);
+  }
+  
+  .label__help {
+    color: var(--color-success);
+  }
+}
+
+// Warning state
+.label--warning {
+  color: var(--color-warning);
+  
+  .label__icon {
+    color: var(--color-warning);
+  }
+  
+  .label__help {
+    color: var(--color-warning);
+  }
+}
+
+// Disabled state
+.label--disabled {
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+  opacity: 0.6;
+  
+  .label__icon {
+    color: var(--color-text-muted);
+  }
+  
+  .label__help {
+    color: var(--color-text-muted);
+  }
+}
+
+// =============================================================================
+// LABEL SIZES
+// =============================================================================
+
+// Small size
+.label--sm {
+  font-size: var(--font-size-xs);
+  
+  .label__icon {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+  
+  .label__help {
+    font-size: 0.625rem; // 10px
+  }
+}
+
+// Medium size (default)
+.label--md {
+  font-size: var(--font-size-sm);
+  
+  .label__icon {
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  .label__help {
+    font-size: var(--font-size-xs);
+  }
+}
+
+// Large size
+.label--lg {
+  font-size: var(--font-size-base);
+  
+  .label__icon {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+  
+  .label__help {
+    font-size: var(--font-size-sm);
+  }
+}
+
+// =============================================================================
+// LABEL LAYOUTS
+// =============================================================================
+
+// Inline layout (label and input on same line)
+.label--inline {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 0;
+  margin-right: var(--spacing-lg);
+  
+  .label__help {
+    display: inline;
+    margin-top: 0;
+    margin-left: var(--spacing-sm);
+  }
+}
+
+// Stacked layout (default)
+.label--stacked {
+  display: flex;
+  flex-direction: column;
+  
+  .label__help {
+    order: 2;
+  }
+}
+
+// Floating layout (for floating labels)
+.label--floating {
+  position: absolute;
+  left: var(--spacing-lg);
+  top: var(--spacing-md);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  transition: all var(--transition-fast);
+  pointer-events: none;
+  transform-origin: left top;
+  background-color: var(--color-white);
+  padding: 0 var(--spacing-xs);
+  margin: 0;
+  
+  &.label--active {
+    transform: translateY(-1.5rem) scale(0.875);
+    color: var(--color-primary);
+    font-weight: var(--font-weight-medium);
+  }
+  
+  &.label--error.label--active {
+    color: var(--color-error);
+  }
+  
+  &.label--success.label--active {
+    color: var(--color-success);
+  }
+  
+  &.label--warning.label--active {
+    color: var(--color-warning);
+  }
+}
+
+// =============================================================================
+// FIELDSET AND LEGEND STYLES
+// =============================================================================
+
+.fieldset {
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-lg);
+  margin: 0;
+  margin-bottom: var(--spacing-lg);
+  
+  .legend {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    padding: 0 var(--spacing-sm);
+    margin-left: calc(var(--spacing-sm) * -1);
+    background-color: var(--color-white);
+  }
+  
+  &--error {
+    border-color: var(--color-error);
+    
+    .legend {
+      color: var(--color-error);
+    }
+  }
+  
+  &--success {
+    border-color: var(--color-success);
+    
+    .legend {
+      color: var(--color-success);
+    }
+  }
+  
+  &--warning {
+    border-color: var(--color-warning);
+    
+    .legend {
+      color: var(--color-warning);
+    }
+  }
+}
+
+// =============================================================================
+// CHECKBOX AND RADIO LABELS
+// =============================================================================
+
+.label--checkbox,
+.label--radio {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  margin-bottom: var(--spacing-sm);
+  
+  input[type="checkbox"],
+  input[type="radio"] {
+    margin-right: var(--spacing-sm);
+    margin-top: 0.125rem; // Align with first line of text
+    flex-shrink: 0;
+  }
+  
+  .label__text {
+    flex: 1;
+    line-height: var(--line-height-normal);
+  }
+  
+  .label__help {
+    margin-top: var(--spacing-xs);
+    margin-left: 0;
+  }
+  
+  &:hover {
+    input[type="checkbox"],
+    input[type="radio"] {
+      border-color: var(--color-primary);
+    }
+  }
+  
+  &.label--disabled {
+    input[type="checkbox"],
+    input[type="radio"] {
+      cursor: not-allowed;
+    }
+  }
+}
+
+// =============================================================================
+// RESPONSIVE ADJUSTMENTS
+// =============================================================================
+
+@media (max-width: 480px) {
+  .label--inline {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 0;
+    margin-bottom: var(--spacing-sm);
+    
+    .label__help {
+      margin-left: 0;
+      margin-top: var(--spacing-xs);
+    }
+  }
+  
+  .fieldset {
+    padding: var(--spacing-md);
+    
+    .legend {
+      font-size: var(--font-size-sm);
+    }
+  }
+}
+
+// =============================================================================
+// ACCESSIBILITY & MOTION
+// =============================================================================
+
+@media (prefers-reduced-motion: reduce) {
+  .label--floating {
+    transition: none;
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .label {
+    font-weight: var(--font-weight-semibold);
+    
+    &__required {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-bold);
+    }
+  }
+  
+  .fieldset {
+    border-width: 2px;
+    
+    .legend {
+      font-weight: var(--font-weight-bold);
+    }
+  }
+}
+
+// Dark mode adjustments
+@media (prefers-color-scheme: dark) {
+  .label--floating {
+    background-color: var(--color-gray-800);
+    
+    &.label--active {
+      background-color: var(--color-background);
+    }
+  }
+  
+  .fieldset {
+    border-color: var(--color-gray-600);
+    
+    .legend {
+      background-color: var(--color-background);
+    }
+  }
+}
+
+// =============================================================================
+// FOCUS MANAGEMENT
+// =============================================================================
+
+// When label is clicked, ensure associated input gets focus styles
+.label:focus-within {
+  .label__icon {
+    color: var(--color-primary);
+  }
+}
+
+// Screen reader only content
+.label__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

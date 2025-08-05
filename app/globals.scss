@@ -1,0 +1,615 @@
+// =============================================================================
+// GLOBALS.SCSS - Global styles with SCSS nesting and BEM methodology
+// =============================================================================
+
+// CSS Reset and Normalization
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+}
+
+// =============================================================================
+// CSS CUSTOM PROPERTIES (CSS Variables)
+// =============================================================================
+
+:root {
+  // Color Palette
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+  --color-primary-light: #dbeafe;
+  --color-secondary: #6b7280;
+  --color-secondary-hover: #4b5563;
+  
+  // Status Colors
+  --color-success: #10b981;
+  --color-success-light: #d1fae5;
+  --color-warning: #f59e0b;
+  --color-warning-light: #fef3c7;
+  --color-error: #ef4444;
+  --color-error-light: #fee2e2;
+  --color-info: #06b6d4;
+  --color-info-light: #cffafe;
+  
+  // Neutral Colors
+  --color-white: #ffffff;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  
+  // Semantic Colors
+  --color-background: var(--color-white);
+  --color-surface: var(--color-gray-50);
+  --color-border: var(--color-gray-200);
+  --color-border-focus: var(--color-primary);
+  --color-text-primary: var(--color-gray-900);
+  --color-text-secondary: var(--color-gray-600);
+  --color-text-muted: var(--color-gray-500);
+  --color-text-inverse: var(--color-white);
+  
+  // Spacing Scale
+  --spacing-xs: 0.25rem;   // 4px
+  --spacing-sm: 0.5rem;    // 8px
+  --spacing-md: 0.75rem;   // 12px
+  --spacing-lg: 1rem;      // 16px
+  --spacing-xl: 1.5rem;    // 24px
+  --spacing-2xl: 2rem;     // 32px
+  --spacing-3xl: 3rem;     // 48px
+  --spacing-4xl: 4rem;     // 64px
+  
+  // Typography Scale
+  --font-size-xs: 0.75rem;    // 12px
+  --font-size-sm: 0.875rem;   // 14px
+  --font-size-base: 1rem;     // 16px
+  --font-size-lg: 1.125rem;   // 18px
+  --font-size-xl: 1.25rem;    // 20px
+  --font-size-2xl: 1.5rem;    // 24px
+  --font-size-3xl: 1.875rem;  // 30px
+  --font-size-4xl: 2.25rem;   // 36px
+  
+  // Font Weights
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  // Line Heights
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  // Border Radius
+  --border-radius-sm: 0.25rem;   // 4px
+  --border-radius-md: 0.375rem;  // 6px
+  --border-radius-lg: 0.5rem;    // 8px
+  --border-radius-xl: 0.75rem;   // 12px
+  --border-radius-2xl: 1rem;     // 16px
+  --border-radius-full: 9999px;
+  
+  // Shadows
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  
+  // Transitions
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+  
+  // Z-index Scale
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: var(--color-gray-900);
+    --color-surface: var(--color-gray-800);
+    --color-border: var(--color-gray-700);
+    --color-text-primary: var(--color-gray-100);
+    --color-text-secondary: var(--color-gray-300);
+    --color-text-muted: var(--color-gray-400);
+  }
+}
+
+// =============================================================================
+// UTILITY CLASSES (BEM-style)
+// =============================================================================
+
+// Layout utilities
+.u-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  
+  &--fluid {
+    max-width: none;
+  }
+  
+  &--narrow {
+    max-width: 800px;
+  }
+}
+
+.u-flex {
+  display: flex;
+  
+  &--column {
+    flex-direction: column;
+  }
+  
+  &--center {
+    align-items: center;
+    justify-content: center;
+  }
+  
+  &--between {
+    justify-content: space-between;
+  }
+  
+  &--around {
+    justify-content: space-around;
+  }
+  
+  &--wrap {
+    flex-wrap: wrap;
+  }
+}
+
+.u-grid {
+  display: grid;
+  
+  &--cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  &--cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  &--cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  &--gap-sm {
+    gap: var(--spacing-sm);
+  }
+  
+  &--gap-md {
+    gap: var(--spacing-md);
+  }
+  
+  &--gap-lg {
+    gap: var(--spacing-lg);
+  }
+}
+
+// Spacing utilities
+.u-margin {
+  &--none {
+    margin: 0;
+  }
+  
+  &--sm {
+    margin: var(--spacing-sm);
+  }
+  
+  &--md {
+    margin: var(--spacing-md);
+  }
+  
+  &--lg {
+    margin: var(--spacing-lg);
+  }
+  
+  &--xl {
+    margin: var(--spacing-xl);
+  }
+  
+  &-top {
+    &--sm {
+      margin-top: var(--spacing-sm);
+    }
+    
+    &--md {
+      margin-top: var(--spacing-md);
+    }
+    
+    &--lg {
+      margin-top: var(--spacing-lg);
+    }
+  }
+  
+  &-bottom {
+    &--sm {
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    &--md {
+      margin-bottom: var(--spacing-md);
+    }
+    
+    &--lg {
+      margin-bottom: var(--spacing-lg);
+    }
+  }
+}
+
+.u-padding {
+  &--none {
+    padding: 0;
+  }
+  
+  &--sm {
+    padding: var(--spacing-sm);
+  }
+  
+  &--md {
+    padding: var(--spacing-md);
+  }
+  
+  &--lg {
+    padding: var(--spacing-lg);
+  }
+  
+  &--xl {
+    padding: var(--spacing-xl);
+  }
+}
+
+// Text utilities
+.u-text {
+  &--center {
+    text-align: center;
+  }
+  
+  &--left {
+    text-align: left;
+  }
+  
+  &--right {
+    text-align: right;
+  }
+  
+  &--primary {
+    color: var(--color-text-primary);
+  }
+  
+  &--secondary {
+    color: var(--color-text-secondary);
+  }
+  
+  &--muted {
+    color: var(--color-text-muted);
+  }
+  
+  &--error {
+    color: var(--color-error);
+  }
+  
+  &--success {
+    color: var(--color-success);
+  }
+  
+  &--warning {
+    color: var(--color-warning);
+  }
+  
+  &--xs {
+    font-size: var(--font-size-xs);
+  }
+  
+  &--sm {
+    font-size: var(--font-size-sm);
+  }
+  
+  &--lg {
+    font-size: var(--font-size-lg);
+  }
+  
+  &--xl {
+    font-size: var(--font-size-xl);
+  }
+  
+  &--bold {
+    font-weight: var(--font-weight-bold);
+  }
+  
+  &--semibold {
+    font-weight: var(--font-weight-semibold);
+  }
+  
+  &--medium {
+    font-weight: var(--font-weight-medium);
+  }
+}
+
+// Visibility utilities
+.u-hidden {
+  display: none;
+}
+
+.u-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// =============================================================================
+// GLOBAL COMPONENT STYLES (BEM methodology)
+// =============================================================================
+
+// Page layout
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  
+  &__header {
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--spacing-lg) 0;
+  }
+  
+  &__main {
+    flex: 1;
+    padding: var(--spacing-xl) 0;
+  }
+  
+  &__footer {
+    background-color: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    padding: var(--spacing-lg) 0;
+    margin-top: auto;
+  }
+}
+
+// Card component
+.card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  
+  &__header {
+    padding: var(--spacing-xl);
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+  }
+  
+  &__body {
+    padding: var(--spacing-xl);
+  }
+  
+  &__footer {
+    padding: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+  }
+  
+  &--elevated {
+    box-shadow: var(--shadow-lg);
+  }
+  
+  &--bordered {
+    border: 2px solid var(--color-border);
+  }
+}
+
+// Alert component
+.alert {
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  border: 1px solid transparent;
+  margin-bottom: var(--spacing-lg);
+  
+  &__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: var(--spacing-sm);
+    flex-shrink: 0;
+  }
+  
+  &__content {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  &__title {
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  &__message {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+  }
+  
+  &--success {
+    background-color: var(--color-success-light);
+    border-color: var(--color-success);
+    color: var(--color-success);
+  }
+  
+  &--warning {
+    background-color: var(--color-warning-light);
+    border-color: var(--color-warning);
+    color: var(--color-warning);
+  }
+  
+  &--error {
+    background-color: var(--color-error-light);
+    border-color: var(--color-error);
+    color: var(--color-error);
+  }
+  
+  &--info {
+    background-color: var(--color-info-light);
+    border-color: var(--color-info);
+    color: var(--color-info);
+  }
+}
+
+// Loading states
+.loading {
+  &__spinner {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid var(--color-gray-300);
+    border-radius: 50%;
+    border-top-color: var(--color-primary);
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  &__skeleton {
+    background: linear-gradient(90deg, var(--color-gray-200) 25%, var(--color-gray-100) 50%, var(--color-gray-200) 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: var(--border-radius-sm);
+    
+    &--text {
+      height: 1rem;
+      margin-bottom: var(--spacing-xs);
+      
+      &:last-child {
+        margin-bottom: 0;
+        width: 60%;
+      }
+    }
+    
+    &--avatar {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: var(--border-radius-full);
+    }
+    
+    &--button {
+      height: 2.5rem;
+      width: 6rem;
+    }
+  }
+}
+
+// =============================================================================
+// ANIMATIONS
+// =============================================================================
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// =============================================================================
+// RESPONSIVE BREAKPOINTS
+// =============================================================================
+
+// Mobile-first approach
+@mixin mobile {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: 768px) and (max-width: 1023px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin large-desktop {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
